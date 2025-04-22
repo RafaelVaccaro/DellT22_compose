@@ -1,0 +1,33 @@
+<div class="dialog">
+  <h2>Eventos - {{ batalha.startupA.nome }}</h2>
+  <div class="eventos">
+    <button *ngFor="let evento of eventos"
+            mat-button
+            color="primary"
+            (click)="aplicarEvento(batalha.startupA.id, evento.tipo)"
+            [disabled]="batalha.finalizada || eventosAplicadosA.includes(evento.tipo)">
+      {{ evento.nome }}
+    </button>
+  </div>
+
+  <h2>Eventos - {{ batalha.startupB.nome }}</h2>
+  <div class="eventos">
+    <button *ngFor="let evento of eventos"
+            mat-button
+            color="accent"
+            (click)="aplicarEvento(batalha.startupB.id, evento.tipo)"
+            [disabled]="batalha.finalizada || eventosAplicadosB.includes(evento.tipo)">
+      {{ evento.nome }}
+    </button>
+  </div>
+
+  <div class="botao_finalizar">
+    <button mat-raised-button
+            color="warn"
+            (click)="finalizar()"
+            [disabled]="batalha.finalizada">
+      Finalizar Batalha
+    </button>
+  </div>
+
+</div>

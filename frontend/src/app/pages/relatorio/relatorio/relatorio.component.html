@@ -1,0 +1,61 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Resultado Final do Torneio</mat-card-title>
+    <mat-card-content *ngIf="campea">
+      <h2>🏆 Campeã: {{ campea.nome }}</h2>
+      <p>Slogan: {{ campea.slogan }}</p>
+      <p>Pontuação: {{ campea.pontuacao }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card style="margin-top: 24px;">
+    <mat-card-title>📊 Ranking de Startups</mat-card-title>
+    <mat-table [dataSource]="startups" class="mat-elevation-z2">
+      <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let s"> {{ s.nome }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="pontuacao">
+        <mat-header-cell *matHeaderCellDef> Pontuação </mat-header-cell>
+        <mat-cell *matCellDef="let s"> {{ s.pontuacao }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="pitch">
+        <mat-header-cell *matHeaderCellDef> Pitch convincente </mat-header-cell>
+        <mat-cell *matCellDef="let s"> {{ s.pitchCount }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="bugs">
+        <mat-header-cell *matHeaderCellDef> Produto com bugs </mat-header-cell>
+        <mat-cell *matCellDef="let s"> {{ s.bugsCount }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tracao">
+        <mat-header-cell *matHeaderCellDef> Boa tração de usuários </mat-header-cell>
+        <mat-cell *matCellDef="let s"> {{ s.tracaoCount }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="investidor">
+        <mat-header-cell *matHeaderCellDef> Investidor irritado </mat-header-cell>
+        <mat-cell *matCellDef="let s"> {{ s.investidorIrritadoCount }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="fake">
+        <mat-header-cell *matHeaderCellDef> Fake news no pitch </mat-header-cell>
+        <mat-cell *matCellDef="let s"> {{ s.fakeNewsCount }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card>
+
+
+  <div style="text-align: center; margin-top: 32px;">
+    <button mat-raised-button color="warn" (click)="reiniciarTorneio()">
+      Reiniciar Torneio
+    </button>
+  </div>
+
+</div>

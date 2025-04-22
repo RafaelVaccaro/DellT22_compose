@@ -1,0 +1,34 @@
+<div class="cards">
+  <mat-card *ngFor="let batalha of batalhas" class="batalha-card">
+    <mat-card-title>
+      {{ batalha.startupA.nome }} VS {{ batalha.startupB.nome }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      Rodada {{ batalha.rodada }}
+    </mat-card-subtitle>
+    <mat-card-content>
+      <p>{{ batalha.startupA.nome }}: {{ batalha.pontuacaoA }}</p>
+      <p>{{ batalha.startupB.nome }}: {{ batalha.pontuacaoB }}</p>
+      <p>Status: {{ batalha.finalizada ? 'Finalizada' : 'Pendente' }}</p>
+
+      <ng-container *ngIf="batalha.finalizada && batalha.resultado">
+        <p><strong>Vencedora:</strong> {{ batalha.resultado }}</p>
+      </ng-container>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="abrirDialog(batalha)" [disabled]="batalha.finalizada">
+        Batalhar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="rodape">
+  <button mat-flat-button color="primary"
+          style="margin-top: 16px;"
+          [disabled]="!campea"
+          (click)="irParaRelatorio()">
+    Ver Relatório Final
+  </button>
+</div>
+

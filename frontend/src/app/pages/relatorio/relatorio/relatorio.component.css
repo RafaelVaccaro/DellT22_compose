@@ -1,0 +1,18 @@
+.container {
+  margin: 100px;
+}
+
+mat-card {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+mat-card-title {
+  margin: 10px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+mat-list-item {
+  font-size: 16px;
+}

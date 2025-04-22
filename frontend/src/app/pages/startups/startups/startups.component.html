@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="formdiv">
+    <h1>CADASTRO STARTUPS</h1>
+    <form [formGroup]="form" (ngSubmit)="cadastrar()" class="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Slogan</mat-label>
+        <input matInput formControlName="slogan" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Ano de Fundação</mat-label>
+        <input matInput formControlName="anoFundacao" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Cadastrar Startup
+      </button>
+    </form>
+  </div>
+
+  <div class="cards">
+    <mat-card *ngFor="let startup of startups" class="startup-card">
+      <mat-card-title>{{ startup.nome }}</mat-card-title>
+      <mat-card-subtitle>{{ startup.slogan }}</mat-card-subtitle>
+      <mat-card-content>
+        <p>Ano: {{ startup.anoFundacao }}</p>
+        <p>Pontuação: {{ startup.pontuacao }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent"
+                (click)="usarInvestidorSecreto(startup)"
+                [disabled]="startup.investidorSecretoUsado">
+          Investidor Secreto
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="rodape">
+    <button mat-stroked-button color="accent" (click)="iniciarTorneio()" [disabled]="!podeIniciar()">
+      Iniciar Torneio
+    </button>
+  </div>
+</div>
