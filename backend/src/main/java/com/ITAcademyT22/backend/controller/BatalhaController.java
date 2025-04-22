@@ -19,14 +19,14 @@ public class BatalhaController {
     private final BatalhaService batalhaService;
     private final BatalhaRepository batalhaRepository;
 
-    // GET /batalhas → lista batalhas da rodada atual
+    // Lista todas as batalhas
     @GetMapping
     public ResponseEntity<List<Batalha>> listarTodas() {
-        List<Batalha> batalhas = batalhaRepository.findAll(); // opcional: filtrar por rodada atual
+        List<Batalha> batalhas = batalhaRepository.findAll();
         return ResponseEntity.ok(batalhas);
     }
 
-    // GET /batalhas/{id} → detalhes da batalha
+    // Retorna os detalhes de uma batalha específica pelo ID
     @GetMapping("/{id}")
     public ResponseEntity<Batalha> buscarPorId(@PathVariable Long id) {
         Batalha batalha = batalhaRepository.findById(id)
@@ -34,7 +34,7 @@ public class BatalhaController {
         return ResponseEntity.ok(batalha);
     }
 
-    // POST /batalhas/{id}/eventos → aplicar evento
+    // Aplica um evento à batalha com o ID fornecido
     @PostMapping("/{id}/eventos")
     public ResponseEntity<Void> aplicarEvento(
             @PathVariable Long id,
@@ -44,7 +44,7 @@ public class BatalhaController {
         return ResponseEntity.ok().build();
     }
 
-    // POST /batalhas/{id}/finalizar → finaliza a batalha e calcula vencedor
+    // Finaliza a batalha e calcula o vencedor
     @PostMapping("/{id}/finalizar")
     public ResponseEntity<Void> finalizarBatalha(@PathVariable Long id) {
         batalhaService.finalizarBatalha(id);
