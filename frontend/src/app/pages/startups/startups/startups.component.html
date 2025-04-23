@@ -14,8 +14,19 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Ano de Fundação</mat-label>
-        <input matInput formControlName="anoFundacao" required>
+        <input
+          matInput
+          type="number"
+          formControlName="anoFundacao"
+          required
+          min="1900"
+          max="2025"
+        >
+        <mat-error *ngIf="form.get('anoFundacao')?.hasError('min') || form.get('anoFundacao')?.hasError('max')">
+          Ano deve estar entre 1900 e 2025
+        </mat-error>
       </mat-form-field>
+
 
       <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
         Cadastrar Startup
